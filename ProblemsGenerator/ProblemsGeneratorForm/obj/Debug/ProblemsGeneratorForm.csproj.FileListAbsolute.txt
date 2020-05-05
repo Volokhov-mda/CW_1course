@@ -1,0 +1,14 @@
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Debug\ProblemsGeneratorForm.exe.config
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Debug\ProblemsGeneratorForm.exe
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Debug\ProblemsGeneratorForm.pdb
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.csprojAssemblyReference.cache
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.Properties.Resources.resources
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.csproj.GenerateResource.cache
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.exe
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.pdb
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Debug\ClassLib.dll
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Debug\Utils.dll
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Debug\ClassLib.pdb
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Debug\Utils.pdb
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.csproj.CopyComplete
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.Generator.resources

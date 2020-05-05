@@ -1,0 +1,8 @@
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\Utils\bin\Debug\Utils.dll
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\Utils\bin\Debug\Utils.pdb
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\Utils\obj\Debug\Utils.csprojAssemblyReference.cache
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\Utils\obj\Debug\Utils.dll
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\Utils\obj\Debug\Utils.pdb
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\Utils\bin\Debug\ClassLib.dll
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\Utils\bin\Debug\ClassLib.pdb
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\Utils\obj\Debug\Utils.csproj.CopyComplete
