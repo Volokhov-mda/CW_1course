@@ -25,6 +25,23 @@ namespace ClassLib
                     "\t<link rel=\"stylesheet\" href=\"styles/styles.css\">" + Environment.NewLine +
                     "\t<script src=\"https://polyfill.io/v3/polyfill.min.js?features=es6\"></script>" + Environment.NewLine +
                     "\t<script id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js\"></script>" + Environment.NewLine +
+                    "\t<script>" + Environment.NewLine +
+                        "\t\tfunction hideAnswers() {" + Environment.NewLine +
+                            "\t\t\tvar answers = document.getElementsByClassName('taskAnswer');" + Environment.NewLine +
+
+                            "\t\t\tif (document.getElementById('cb').checked == false) {" + Environment.NewLine +
+                                    "\t\t\t\tfor (let i = 0; i < answers.length; i++)" + Environment.NewLine +
+                                    "\t\t\t\t{" + Environment.NewLine +
+                                        "\t\t\t\t\tanswers[i].style.display = \"none\";" + Environment.NewLine +
+                                    "\t\t\t\t}" + Environment.NewLine +
+                            "\t\t\t} else {" + Environment.NewLine +
+                                "\t\t\t\tfor (let i = 0; i < answers.length; i++)" + Environment.NewLine +
+                                "\t\t\t\t{" + Environment.NewLine +
+                                    "\t\t\t\t\tanswers[i].style.display = \"block\";" + Environment.NewLine +
+                                "\t\t\t\t}" + Environment.NewLine +
+                            "\t\t\t}" + Environment.NewLine +
+                        "\t\t}" + Environment.NewLine +
+                    "\t</script>" + Environment.NewLine +
                     "\t<style>" + Environment.NewLine +
                         "\t\tbody {" + Environment.NewLine +
                             "\t\t\tfont - size: 14px;" + Environment.NewLine +
@@ -32,25 +49,32 @@ namespace ClassLib
                         "\t\t}" + Environment.NewLine +
                         Environment.NewLine +
                         "\t\t.tasks_wrapper {" + Environment.NewLine +
-                        	"\t\t\tmargin-left: auto;" + Environment.NewLine +
-    		                "\t\t\tmargin-right: auto;" + Environment.NewLine +
+                            "\t\t\tmargin-left: auto;" + Environment.NewLine +
+                            "\t\t\tmargin-right: auto;" + Environment.NewLine +
                             "\t\t\t/* display: flexbox; */" + Environment.NewLine +
                             "\t\t\tdisplay: flex;" + Environment.NewLine +
-			                "\t\t\talign-items: center;" + Environment.NewLine +
-			                "\t\t\tjustify-content: center;" + Environment.NewLine +
-			                "\t\t\tflex-wrap: wrap;" + Environment.NewLine +
+                            "\t\t\talign-items: center;" + Environment.NewLine +
+                            "\t\t\tjustify-content: center;" + Environment.NewLine +
+                            "\t\t\tflex-wrap: wrap;" + Environment.NewLine +
                             "\t\t\talign-items: stretch;" + Environment.NewLine +
-		                "\t\t}" + Environment.NewLine +
+                        "\t\t}" + Environment.NewLine +
                         Environment.NewLine +
-		                "\t\t.task_wrapper {" + Environment.NewLine +
-			                "\t\t\twidth: 25vw;" + Environment.NewLine +
+                        "\t\t.task_wrapper {" + Environment.NewLine +
+                            "\t\t\twidth: 25vw;" + Environment.NewLine +
                             "\t\t\tmin-width: 250px;" + Environment.NewLine +
                             "\t\t\tpadding: 10px;" + Environment.NewLine +
-			                "\t\t\tborder: dashed 1px grey;" + Environment.NewLine +
+                            "\t\t\tborder: dashed 1px grey;" + Environment.NewLine +
                             "\t\t\tdisplay: flex;" + Environment.NewLine +
                             "\t\t\tflex-direction: column;" + Environment.NewLine +
                             "\t\t\t/* flex-grow: 1; */" + Environment.NewLine +
                             "\t\t\toverflow: hidden;" + Environment.NewLine +
+                        "\t\t}" + Environment.NewLine +
+                        Environment.NewLine +
+                        "\t\t.checkbox_wrapper {" + Environment.NewLine +
+                            "\t\t\tmargin: 15px 0;" + Environment.NewLine +
+                            "\t\t\tdisplay: flex;" + Environment.NewLine +
+                            "\t\t\talign-items: center;" + Environment.NewLine +
+                            "\t\t\tfont-size: 20px;" + Environment.NewLine +
                         "\t\t}" + Environment.NewLine +
                         Environment.NewLine +
                         "\t\t.taskVariant {" + Environment.NewLine +
@@ -60,12 +84,22 @@ namespace ClassLib
                             "\t\t\tfont-weight: bold;" + Environment.NewLine +
                         "\t\t}" + Environment.NewLine +
                         Environment.NewLine +
-                        "\t\t .taskAnswer { margin-bottom: 10px; }" + Environment.NewLine +
+                        "\t\t.taskExpression { margin-bottom: 10px; }" + Environment.NewLine +
                         Environment.NewLine +
-                        "\t\t@media print { .task_wrapper { page -break-inside: avoid; } }" + Environment.NewLine +
+                        "\t\t.taskAnswer { margin-bottom: 15px; display: none; }" + Environment.NewLine +
+                        Environment.NewLine +
+                        "\t\t@media print { " + Environment.NewLine +
+                            "\t\t\t.task_wrapper { page-break-inside: avoid; }" + Environment.NewLine +
+                            "\t\t\t.checkbox_wrapper { display: none; }" + Environment.NewLine +
+                        "\t\t}" + Environment.NewLine +
                     "\t</style>" + Environment.NewLine +
                 "</head>" + Environment.NewLine +
                 "<body>" + Environment.NewLine +
+                "<div class=\"checkbox_wrapper\">" + Environment.NewLine +
+                    "\t<input type=\"checkbox\" onclick=\"hideAnswers()\" id=\"cb\" name=\"cb\">" + Environment.NewLine +
+                    "\t<label for=\"cb\">Показать ответы</label>" + Environment.NewLine +
+                "</div>" + Environment.NewLine +
+                Environment.NewLine +
                 "<div class=\"tasks_wrapper\">" + Environment.NewLine +
                 "</div>" + Environment.NewLine +
                 "</body>" + Environment.NewLine +
@@ -144,15 +178,7 @@ namespace ClassLib
         {
             using (StreamWriter fs = new StreamWriter(new FileStream(path, FileMode.Create), Encoding.Unicode))
             {
-                try
-                {
-                    fs.Write(HtmlDoc);
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
+                fs.Write(HtmlDoc);
             }
         }
 

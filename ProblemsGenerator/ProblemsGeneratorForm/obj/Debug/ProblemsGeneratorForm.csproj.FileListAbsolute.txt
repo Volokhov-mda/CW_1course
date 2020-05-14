@@ -12,3 +12,6 @@ C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Debug\Utils.pdb
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.csproj.CopyComplete
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.Generator.resources
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.TaskConstructor.resources
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.MainMenu.resources
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.RandomGenerator.resources

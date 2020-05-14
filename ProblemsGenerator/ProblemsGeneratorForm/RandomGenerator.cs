@@ -14,28 +14,23 @@ using ClassLib;
 
 namespace ProblemsGeneratorForm
 {
-    public partial class Generator : Form
+    public partial class RandomGenerator : Form
     {
         const string HTML_FILE = "../../../html/pageWithTasks.html";
 
         Form mainMenu;
 
-        public Generator(Form mainMenu)
+        public RandomGenerator(Form mainMenu)
         {
             InitializeComponent();
 
             this.mainMenu = mainMenu;
         }
 
-        private void Generator_Load(object sender, EventArgs e)
+        private void RandomGenerator_Load(object sender, EventArgs e)
         {
             this.Width = 1550;
-            this.Height = 950;
-        }
-
-        private void selectExpressionType_comboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            TryToEnableButtons();
+            this.Height = 800;
         }
 
         private void tasksNumber_textBox_TextChanged(object sender, EventArgs e)
@@ -68,22 +63,6 @@ namespace ProblemsGeneratorForm
             }
 
             TryToEnableButtons();
-        }
-
-        private void generate_button_Click(object sender, EventArgs e)
-        {
-            DummyHTML HtmlDoc = new DummyHTML();
-
-            Utils.Utils.generateHTMLDoc(HtmlDoc, 
-                int.Parse(tasksNumber_textBox.Text), int.Parse(expressionsNumber_textBox.Text), 
-                (string)selectExpressionType_comboBox.SelectedItem);
-
-            HtmlDoc.SaveDoc(HTML_FILE);
-
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = Path.GetFileName(HTML_FILE);
-            psi.WorkingDirectory = Path.GetDirectoryName(HTML_FILE);
-            Process.Start(psi);
         }
 
         private void generateRandom_button_Click(object sender, EventArgs e)
@@ -128,15 +107,8 @@ namespace ProblemsGeneratorForm
         {
             uint tempValue;
 
-            generate_button.Enabled = selectExpressionType_comboBox.SelectedItem != null && uint.TryParse(tasksNumber_textBox.Text, out tempValue) &&
+            generateRandom_button.Enabled = uint.TryParse(tasksNumber_textBox.Text, out tempValue) &&
                 uint.TryParse(expressionsNumber_textBox.Text, out tempValue) ? true : false;
-        }
-
-        private void taskConstructor_button_Click(object sender, EventArgs e)
-        {
-            TaskConstructor taskConstructor = new TaskConstructor(this);
-            this.Hide();
-            taskConstructor.Show();
         }
 
         private void back_button_Click(object sender, EventArgs e)
@@ -145,7 +117,7 @@ namespace ProblemsGeneratorForm
             this.Dispose();
         }
 
-        private void Generator_FormClosed(object sender, FormClosedEventArgs e)
+        private void RandomGenerator_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Dispose();
             mainMenu.Show();
