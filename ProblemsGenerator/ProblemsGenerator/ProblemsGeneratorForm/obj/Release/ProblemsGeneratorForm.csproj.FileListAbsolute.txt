@@ -1,0 +1,15 @@
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Release\ProblemsGeneratorForm.exe.config
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Release\ProblemsGeneratorForm.exe
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Release\ProblemsGeneratorForm.pdb
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Release\ClassLib.dll
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Release\ClassLib.pdb
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Release\ProblemsGeneratorForm.csprojAssemblyReference.cache
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Release\ProblemsGeneratorForm.Generator.resources
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Release\ProblemsGeneratorForm.MainMenu.resources
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Release\ProblemsGeneratorForm.Properties.Resources.resources
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Release\ProblemsGeneratorForm.RandomGenerator.resources
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Release\ProblemsGeneratorForm.TaskConstructor.resources
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Release\ProblemsGeneratorForm.csproj.GenerateResource.cache
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Release\ProblemsGeneratorForm.csproj.CopyComplete
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Release\ProblemsGeneratorForm.exe
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Release\ProblemsGeneratorForm.pdb
