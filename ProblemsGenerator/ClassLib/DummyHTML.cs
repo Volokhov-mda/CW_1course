@@ -11,9 +11,12 @@ namespace ClassLib
     {
         private string htmlDoc;
 
-        public string HtmlDoc { get => htmlDoc; set => htmlDoc = value; }
+        public string HtmlDoc { get => htmlDoc; private set => htmlDoc = value; }
 
-        public void EmptyDoc()
+        /// <summary>
+        /// Создает HTML документ с пустым тегом <body></body>, стилями и скриптом MathJax.
+        /// </summary>
+        private void EmptyDoc()
         {
             HtmlDoc =
                 "<!DOCTYPE html>" + Environment.NewLine +
@@ -44,8 +47,8 @@ namespace ClassLib
                     "\t</script>" + Environment.NewLine +
                     "\t<style>" + Environment.NewLine +
                         "\t\tbody {" + Environment.NewLine +
-                            "\t\t\tfont - size: 14px;" + Environment.NewLine +
-                            "\t\t\tfont - family: 'Times New Roman', Times, serif;" + Environment.NewLine +
+                            "\t\t\tfont-size: 14px;" + Environment.NewLine +
+                            "\t\t\tfont-family: 'Times New Roman', Times, serif;" + Environment.NewLine +
                         "\t\t}" + Environment.NewLine +
                         Environment.NewLine +
                         "\t\t.tasks_wrapper {" + Environment.NewLine +
@@ -74,7 +77,6 @@ namespace ClassLib
                             "\t\t\tmargin: 15px 0;" + Environment.NewLine +
                             "\t\t\tdisplay: flex;" + Environment.NewLine +
                             "\t\t\talign-items: center;" + Environment.NewLine +
-                            "\t\t\tfont-size: 20px;" + Environment.NewLine +
                         "\t\t}" + Environment.NewLine +
                         Environment.NewLine +
                         "\t\t.taskVariant {" + Environment.NewLine +
@@ -88,17 +90,35 @@ namespace ClassLib
                         Environment.NewLine +
                         "\t\t.taskAnswer { margin-bottom: 15px; display: none; }" + Environment.NewLine +
                         Environment.NewLine +
+                        "\t\t.info_wrapper {" + Environment.NewLine +
+                            "\t\t\tdisplay: flex;" + Environment.NewLine +
+                            "\t\t\tjustify-content: space-evenly;" + Environment.NewLine +
+                            "\t\t\talign-items: center;" + Environment.NewLine +
+                            "\t\t\tfont-size: 16px;" + Environment.NewLine +
+                        "\t\t}" + Environment.NewLine +
+                        Environment.NewLine +
+                        "\t\t.seed {" + Environment.NewLine +
+                            "\t\t\tpadding: 2px;" + Environment.NewLine +
+                            "\t\t\tborder: 1px solid black;" + Environment.NewLine +
+                        "\t\t}" + Environment.NewLine +
+                        Environment.NewLine +
                         "\t\t@media print { " + Environment.NewLine +
                             "\t\t\t.task_wrapper { page-break-inside: avoid; }" + Environment.NewLine +
                             "\t\t\t.checkbox_wrapper { display: none; }" + Environment.NewLine +
+                            "\t\t\t.info_wrapper { display: none; }" + Environment.NewLine +
                         "\t\t}" + Environment.NewLine +
                     "\t</style>" + Environment.NewLine +
                 "</head>" + Environment.NewLine +
                 "<body>" + Environment.NewLine +
-                "<div class=\"checkbox_wrapper\">" + Environment.NewLine +
-                    "\t<input type=\"checkbox\" onclick=\"hideAnswers()\" id=\"cb\" name=\"cb\">" + Environment.NewLine +
-                    "\t<label for=\"cb\">Показать ответы</label>" + Environment.NewLine +
-                "</div>" + Environment.NewLine +
+                    "\t<div class=\"info_wrapper\">" + Environment.NewLine +
+                        "\t\t<div class=\"checkbox_wrapper\">" + Environment.NewLine +
+                            "\t\t\t<input type=\"checkbox\" onclick=\"hideAnswers()\" id=\"cb\" name=\"cb\">" + Environment.NewLine +
+                            "\t\t\t<label for=\"cb\">Показать ответы</label>" + Environment.NewLine +
+                        "\t\t</div>" + Environment.NewLine +
+                        "\t\t<div class=\"seed_wrapper\">" + Environment.NewLine +
+                            "\t\t\tКлюч генерации: <span class=\"seed\">seedValue</span>" + Environment.NewLine +
+                        "\t\t</div>" + Environment.NewLine +
+                    "\t</div>" + Environment.NewLine +
                 Environment.NewLine +
                 "<div class=\"tasks_wrapper\">" + Environment.NewLine +
                 "</div>" + Environment.NewLine +
@@ -106,6 +126,13 @@ namespace ClassLib
                 "</html>";
         }
 
+        /// <summary>
+        /// Создает новый HTML тэг по заданным характеристикам.
+        /// </summary>
+        /// <param name="tag">Имя тэга</param>
+        /// <param name="className">Имя класса</param>
+        /// <param name="content">Содержимое тэка</param>
+        /// <returns></returns>
         public string CreateTag(string tag, string className = "", string content = "")
         {
             string newTag;
@@ -142,7 +169,14 @@ namespace ClassLib
             return newTag;
         }
 
-        public string AddTag(string tag, string className = "", string content = "")
+        /// <summary>
+        /// Добавляет в HTML документ с конца новый тэг по заданным характеристикам.
+        /// </summary>
+        /// <param name="tag">Имя тэга</param>
+        /// <param name="className">Имя класса</param>
+        /// <param name="content">Содержимое тэка</param>
+        /// <returns></returns>
+        public void AddTag(string tag, string className = "", string content = "")
         {
             string newTag = CreateTag(tag, className, content);
 
@@ -168,12 +202,12 @@ namespace ClassLib
                     HtmlDoc = HtmlDoc.Insert(HtmlDoc.LastIndexOf("</div>"), newTag + Environment.NewLine);
                 }
             }
-
-            Console.WriteLine(HtmlDoc);
-
-            return newTag;
         }
 
+        /// <summary>
+        /// Сохраняет HTML документ по заданной директории path.
+        /// </summary>
+        /// <param name="path">Путь, по которому сохранится HTML документ</param>
         public void SaveDoc(string path)
         {
             using (StreamWriter fs = new StreamWriter(new FileStream(path, FileMode.Create), Encoding.Unicode))
@@ -182,6 +216,16 @@ namespace ClassLib
             }
         }
 
+        /// <summary>
+        /// Меняет ключ генерации.
+        /// </summary>
+        /// <param name="newSeed"></param>
+        public void ChangeSeed(string newSeed)
+        {
+            HtmlDoc = HtmlDoc.Replace("seedValue", $"{newSeed}");
+        }
+
+        // Конструктор.
         public DummyHTML()
         {
             EmptyDoc();

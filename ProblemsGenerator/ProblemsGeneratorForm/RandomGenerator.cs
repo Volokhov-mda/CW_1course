@@ -16,10 +16,16 @@ namespace ProblemsGeneratorForm
 {
     public partial class RandomGenerator : Form
     {
+        // Директория, в котором хранится HTML документ.
         const string HTML_FILE = "../../../html/pageWithTasks.html";
 
+        // Главное окно приложения.
         Form mainMenu;
 
+        /// <summary>
+        /// Конструктор окна «Генератор случайных задач».
+        /// </summary>
+        /// <param name="mainMenu">Главное окно приложения</param>
         public RandomGenerator(Form mainMenu)
         {
             InitializeComponent();
@@ -27,12 +33,23 @@ namespace ProblemsGeneratorForm
             this.mainMenu = mainMenu;
         }
 
+        /// <summary>
+        /// Загрузка окна «Генератор случайных задач».
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RandomGenerator_Load(object sender, EventArgs e)
         {
             this.Width = 1550;
             this.Height = 800;
         }
 
+        /// <summary>
+        /// Отображает сообщение с предупреждением, если введенное количество вариантов некорректно,
+        /// и пробует включить кнопку «СГЕНЕРИРОВАТЬ СЛУЧАЙНЫЕ ЗАДАЧИ».
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tasksNumber_textBox_TextChanged(object sender, EventArgs e)
         {
             uint tempValue;
@@ -49,6 +66,12 @@ namespace ProblemsGeneratorForm
             TryToEnableButtons();
         }
 
+        /// <summary>
+        /// Отображает сообщение с предупреждением, если введенное количество задач в варианте некорректны,
+        /// и пробует включить кнопку «СГЕНЕРИРОВАТЬ СЛУЧАЙНЫЕ ЗАДАЧИ».
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void expressionsNumber_textBox_TextChanged(object sender, EventArgs e)
         {
             uint tempValue;
@@ -65,13 +88,31 @@ namespace ProblemsGeneratorForm
             TryToEnableButtons();
         }
 
+        /// <summary>
+        /// Генерирует HTML документ с задачами случайного типа в заданном пользователем количеством вариантов и количеством задач в варианте
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void generateRandom_button_Click(object sender, EventArgs e)
         {
+            // Создание нового пустого HTML документа.
             DummyHTML HtmlDoc = new DummyHTML();
 
-            Utils.Utils.generateHTMLDoc(HtmlDoc,
-                int.Parse(tasksNumber_textBox.Text), int.Parse(expressionsNumber_textBox.Text));
+            // Количество вариантов.
+            int tasksNumber = int.Parse(tasksNumber_textBox.Text);
+            // Количество заданий в варианте.
+            int expressionsNumber = int.Parse(expressionsNumber_textBox.Text);
 
+            // Ключ генерации.
+            int seed = (int)DateTime.Now.Ticks;
+            string stringSeed = $"GR.{tasksNumber}.{expressionsNumber}." +
+                $"{seed}";
+
+            // Добавление вариантов случайного типа задач в HtmlDoc.
+            Generators.GenerateHTMLDoc(HtmlDoc,
+                tasksNumber, expressionsNumber, seed: seed, stringSeed: stringSeed);
+
+            // Безопасное сохранение сгенерированного HtmlDoc.  
             try
             {
                 HtmlDoc.SaveDoc(HTML_FILE);
@@ -81,11 +122,11 @@ namespace ProblemsGeneratorForm
                 psi.WorkingDirectory = Path.GetDirectoryName(HTML_FILE);
                 Process.Start(psi);
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException message)
             {
                 CallMessageBox("Файл не найден", "File Not Found Exception", error: true);
             }
-            catch (IOException ex)
+            catch (IOException message)
             {
                 CallMessageBox("Ошибка ввода/вывода", "IO Exception", error: true);
             }
@@ -103,6 +144,10 @@ namespace ProblemsGeneratorForm
             }
         }
 
+        /// <summary>
+        /// Проверяет корректность введенных пользователем данных (количество вариантов и задач в варианте). 
+        /// Если данные корректны, то включается кнопка «СГЕНЕРИРОВАТЬ СЛУЧАЙНЫЕ ЗАДАЧИ», иначе – выключается
+        /// </summary>
         private void TryToEnableButtons()
         {
             uint tempValue;
@@ -111,12 +156,22 @@ namespace ProblemsGeneratorForm
                 uint.TryParse(expressionsNumber_textBox.Text, out tempValue) ? true : false;
         }
 
+        /// <summary>
+        /// Показывает скрытое главное окно приложения и уничтожает текущее окно.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void back_button_Click(object sender, EventArgs e)
         {
             mainMenu.Show();
             this.Dispose();
         }
 
+        /// <summary>
+        /// Показывает скрытое главное окно приложения и уничтожает текущее окно.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RandomGenerator_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Dispose();

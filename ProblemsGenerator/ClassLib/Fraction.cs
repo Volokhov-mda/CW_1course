@@ -13,12 +13,21 @@ namespace ClassLib
         public double Numerator
         {
             get => numerator;
-            set => numerator = value;
+            private set => numerator = value;
         }
         public double Denominator
         {
             get => denominator;
-            set => denominator = value != 0 ? value : throw new DivideByZeroException("Fractional denominator can't be equal to 0");
+            private set => denominator = value != 0 ? value : throw new DivideByZeroException("Fractional denominator can't be equal to 0");
+        }
+
+        /// <summary>
+        /// Неявное преобразование типа int в Fraction.
+        /// </summary>
+        /// <param name="value"></param>
+        public static implicit operator Fraction(int value)
+        {
+            return new Fraction(value);
         }
 
         // Методы.
@@ -33,15 +42,6 @@ namespace ClassLib
         }
 
         /// <summary>
-        /// Неявное преобразование типа int в Fraction.
-        /// </summary>
-        /// <param name="value"></param>
-        public static implicit operator Fraction(int value)
-        {
-            return new Fraction(value);
-        }
-
-        /// <summary>
         /// Сокращает дробь.
         /// </summary>
         /// <returns></returns>
@@ -51,13 +51,7 @@ namespace ClassLib
             double denum = this.Denominator;
 
             // Нахождение НОД по алгоритму Евклида. НОД запишется в переменную gcd.
-            double gcd = 1;
-            while (denum != 0)
-            {
-                gcd = denum;
-                denum = num % denum;
-                num = gcd;
-            }
+            double gcd = Utils.FindGCD(num, denum);
 
             // Дробь, числитель и знаменатель которой поделены на НОД.
             return new Fraction(this.Numerator / gcd, this.Denominator / gcd);
@@ -80,7 +74,7 @@ namespace ClassLib
         {
             if (this.Numerator == 0) return "0";
 
-            string numerator = $"{(this.Numerator == 1 ? "\\pi" : (this.Numerator == -1 ? "-\\pi" : this.Numerator + "\\pi"))}";
+            string numerator = $"{(this.Numerator == 1 ? "\\pi" : (this.Numerator == -1 ? "-\\pi" : $"{this.Numerator}" + "\\pi"))}";
             return this.Denominator == 1 ? $"\\({numerator}\\)" : $"\\(\\frac{{{numerator}}}{{{this.Denominator}}}\\)";
         }
 
@@ -168,31 +162,31 @@ namespace ClassLib
         // Конструкторы.
         public Fraction(double numerator)
         {
-            this.numerator = numerator;
-            this.denominator = 1;
+            Numerator = numerator;
+            Denominator = 1;
         }
 
         public Fraction(double numerator, double denominator)
         {
             if (denominator < 0 && numerator > 0)
             {
-                this.numerator = -numerator;
-                this.denominator = -denominator;
+                Numerator = -numerator;
+                Denominator = -denominator;
             }
             else if (denominator < 0 && denominator < 0)
             {
-                this.numerator = -numerator;
-                this.denominator = -denominator;
+                Numerator = -numerator;
+                Denominator = -denominator;
             }
             else
             {
-                this.numerator = numerator;
-                this.denominator = denominator;
+                Numerator = numerator;
+                Denominator = denominator;
             }
         }
 
         /// <summary>
-        /// Представление дроби в записи LaTeX со скобками.
+        /// Представление дроби в записи LaTeX без скобок \(...\) слева и справа от выражения.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -203,7 +197,7 @@ namespace ClassLib
         }
 
         /// <summary>
-        /// Представление дроби в записи LaTeX.
+        /// Представление дроби в записи LaTeX со скобками \(...\) слева и справа от выражения.
         /// </summary>
         /// <returns></returns>
         public string ToStringLaTeX()

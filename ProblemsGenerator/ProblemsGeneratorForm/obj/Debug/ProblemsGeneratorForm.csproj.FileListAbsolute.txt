@@ -7,9 +7,7 @@ C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.exe
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.pdb
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Debug\ClassLib.dll
-C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Debug\Utils.dll
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Debug\ClassLib.pdb
-C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\bin\Debug\Utils.pdb
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.csproj.CopyComplete
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.Generator.resources
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGeneratorForm\obj\Debug\ProblemsGeneratorForm.TaskConstructor.resources

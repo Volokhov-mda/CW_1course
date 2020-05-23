@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProblemsGenerator", "Proble
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLib", "ClassLib\ClassLib.csproj", "{4BB6979D-2F81-4933-A51A-975121DA5F04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{C04B6195-B478-42A5-A880-6CDEFE642145}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProblemsGeneratorForm", "ProblemsGeneratorForm\ProblemsGeneratorForm.csproj", "{5B265F8E-1D1E-420C-9344-C9BE1F5C8A14}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{4BB6979D-2F81-4933-A51A-975121DA5F04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BB6979D-2F81-4933-A51A-975121DA5F04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BB6979D-2F81-4933-A51A-975121DA5F04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C04B6195-B478-42A5-A880-6CDEFE642145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C04B6195-B478-42A5-A880-6CDEFE642145}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C04B6195-B478-42A5-A880-6CDEFE642145}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C04B6195-B478-42A5-A880-6CDEFE642145}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5B265F8E-1D1E-420C-9344-C9BE1F5C8A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5B265F8E-1D1E-420C-9344-C9BE1F5C8A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B265F8E-1D1E-420C-9344-C9BE1F5C8A14}.Release|Any CPU.ActiveCfg = Release|Any CPU

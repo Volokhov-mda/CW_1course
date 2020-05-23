@@ -111,10 +111,6 @@
       <Project>{4bb6979d-2f81-4933-a51a-975121da5f04}</Project>
       <Name>ClassLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utils\Utils.csproj">
-      <Project>{c04b6195-b478-42a5-a880-6cdefe642145}</Project>
-      <Name>Utils</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

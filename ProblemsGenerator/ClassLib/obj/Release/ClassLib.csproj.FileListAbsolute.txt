@@ -1,0 +1,5 @@
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ClassLib\bin\Release\ClassLib.dll
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ClassLib\bin\Release\ClassLib.pdb
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ClassLib\obj\Release\ClassLib.csprojAssemblyReference.cache
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ClassLib\obj\Release\ClassLib.dll
+C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ClassLib\obj\Release\ClassLib.pdb

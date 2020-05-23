@@ -48,6 +48,13 @@
             this.notDerivativeExpr_textBox = new System.Windows.Forms.TextBox();
             this.back_button = new System.Windows.Forms.Button();
             this.programNameSubTitle_label = new System.Windows.Forms.Label();
+            this.expressionsNumberWarning_label = new System.Windows.Forms.Label();
+            this.powerExprWarning_label = new System.Windows.Forms.Label();
+            this.quotientExprWarning_label = new System.Windows.Forms.Label();
+            this.expExprWarning_label = new System.Windows.Forms.Label();
+            this.logExprWarning_label = new System.Windows.Forms.Label();
+            this.trigExprWarning_label = new System.Windows.Forms.Label();
+            this.notDerivativeExprWarning_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // programName_label
@@ -250,11 +257,94 @@
             this.programNameSubTitle_label.TabIndex = 26;
             this.programNameSubTitle_label.Text = "Конструктор вариантов";
             // 
+            // expressionsNumberWarning_label
+            // 
+            this.expressionsNumberWarning_label.AutoSize = true;
+            this.expressionsNumberWarning_label.ForeColor = System.Drawing.Color.Red;
+            this.expressionsNumberWarning_label.Location = new System.Drawing.Point(1220, 364);
+            this.expressionsNumberWarning_label.Name = "expressionsNumberWarning_label";
+            this.expressionsNumberWarning_label.Size = new System.Drawing.Size(0, 25);
+            this.expressionsNumberWarning_label.TabIndex = 27;
+            this.expressionsNumberWarning_label.Visible = false;
+            // 
+            // powerExprWarning_label
+            // 
+            this.powerExprWarning_label.AutoSize = true;
+            this.powerExprWarning_label.ForeColor = System.Drawing.Color.Red;
+            this.powerExprWarning_label.Location = new System.Drawing.Point(1331, 448);
+            this.powerExprWarning_label.Name = "powerExprWarning_label";
+            this.powerExprWarning_label.Size = new System.Drawing.Size(161, 50);
+            this.powerExprWarning_label.TabIndex = 28;
+            this.powerExprWarning_label.Text = "Некорректное \r\nзначение";
+            this.powerExprWarning_label.Visible = false;
+            // 
+            // quotientExprWarning_label
+            // 
+            this.quotientExprWarning_label.AutoSize = true;
+            this.quotientExprWarning_label.ForeColor = System.Drawing.Color.Red;
+            this.quotientExprWarning_label.Location = new System.Drawing.Point(1331, 508);
+            this.quotientExprWarning_label.Name = "quotientExprWarning_label";
+            this.quotientExprWarning_label.Size = new System.Drawing.Size(161, 50);
+            this.quotientExprWarning_label.TabIndex = 29;
+            this.quotientExprWarning_label.Text = "Некорректное \r\nзначение";
+            this.quotientExprWarning_label.Visible = false;
+            // 
+            // expExprWarning_label
+            // 
+            this.expExprWarning_label.AutoSize = true;
+            this.expExprWarning_label.ForeColor = System.Drawing.Color.Red;
+            this.expExprWarning_label.Location = new System.Drawing.Point(1331, 568);
+            this.expExprWarning_label.Name = "expExprWarning_label";
+            this.expExprWarning_label.Size = new System.Drawing.Size(161, 50);
+            this.expExprWarning_label.TabIndex = 30;
+            this.expExprWarning_label.Text = "Некорректное \r\nзначение";
+            this.expExprWarning_label.Visible = false;
+            // 
+            // logExprWarning_label
+            // 
+            this.logExprWarning_label.AutoSize = true;
+            this.logExprWarning_label.ForeColor = System.Drawing.Color.Red;
+            this.logExprWarning_label.Location = new System.Drawing.Point(1331, 628);
+            this.logExprWarning_label.Name = "logExprWarning_label";
+            this.logExprWarning_label.Size = new System.Drawing.Size(161, 50);
+            this.logExprWarning_label.TabIndex = 31;
+            this.logExprWarning_label.Text = "Некорректное \r\nзначение";
+            this.logExprWarning_label.Visible = false;
+            // 
+            // trigExprWarning_label
+            // 
+            this.trigExprWarning_label.AutoSize = true;
+            this.trigExprWarning_label.ForeColor = System.Drawing.Color.Red;
+            this.trigExprWarning_label.Location = new System.Drawing.Point(1331, 688);
+            this.trigExprWarning_label.Name = "trigExprWarning_label";
+            this.trigExprWarning_label.Size = new System.Drawing.Size(161, 50);
+            this.trigExprWarning_label.TabIndex = 32;
+            this.trigExprWarning_label.Text = "Некорректное \r\nзначение";
+            this.trigExprWarning_label.Visible = false;
+            // 
+            // notDerivativeExprWarning_label
+            // 
+            this.notDerivativeExprWarning_label.AutoSize = true;
+            this.notDerivativeExprWarning_label.ForeColor = System.Drawing.Color.Red;
+            this.notDerivativeExprWarning_label.Location = new System.Drawing.Point(1331, 748);
+            this.notDerivativeExprWarning_label.Name = "notDerivativeExprWarning_label";
+            this.notDerivativeExprWarning_label.Size = new System.Drawing.Size(161, 50);
+            this.notDerivativeExprWarning_label.TabIndex = 33;
+            this.notDerivativeExprWarning_label.Text = "Некорректное \r\nзначение";
+            this.notDerivativeExprWarning_label.Visible = false;
+            // 
             // TaskConstructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1524, 1029);
+            this.Controls.Add(this.notDerivativeExprWarning_label);
+            this.Controls.Add(this.trigExprWarning_label);
+            this.Controls.Add(this.logExprWarning_label);
+            this.Controls.Add(this.expExprWarning_label);
+            this.Controls.Add(this.quotientExprWarning_label);
+            this.Controls.Add(this.powerExprWarning_label);
+            this.Controls.Add(this.expressionsNumberWarning_label);
             this.Controls.Add(this.programNameSubTitle_label);
             this.Controls.Add(this.back_button);
             this.Controls.Add(this.notDerivativeExpr_textBox);
@@ -309,5 +399,12 @@
         private System.Windows.Forms.TextBox notDerivativeExpr_textBox;
         private System.Windows.Forms.Button back_button;
         private System.Windows.Forms.Label programNameSubTitle_label;
+        private System.Windows.Forms.Label expressionsNumberWarning_label;
+        private System.Windows.Forms.Label powerExprWarning_label;
+        private System.Windows.Forms.Label quotientExprWarning_label;
+        private System.Windows.Forms.Label expExprWarning_label;
+        private System.Windows.Forms.Label logExprWarning_label;
+        private System.Windows.Forms.Label trigExprWarning_label;
+        private System.Windows.Forms.Label notDerivativeExprWarning_label;
     }
 }

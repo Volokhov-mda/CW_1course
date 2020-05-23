@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 using ClassLib;
 
-namespace Utils
+namespace ClassLib
 {
-    public class Utils
+    public class Generators
     {
         /// <summary>
         /// Генератор случайных чисел.
         /// </summary>
-        public static Random random = new Random();
+        public static Random random;
 
         // Возможные названия задач.
-        static string[] possibleNamesOfExpression = { "Исследование показательных функций и произведений",
+        private static string[] possibleNamesOfExpression = { "Исследование показательных функций и произведений",
                                                       "Исследование частных",
                                                       "Исследование степенных и иррациональных функций",
                                                       "Исследование логарифмических функций",
@@ -24,14 +24,15 @@ namespace Utils
                                                       "Исследование функций без помощи производной" };
 
         // Возможные генераторы задач.
-        static GeneratorDelegate[] possibleGeneratorsOfExpression = { GenerateExpExpression,
+        private static GeneratorDelegate[] possibleGeneratorsOfExpression = { GenerateExpExpression,
                                                                       GenerateQuotientExpression,
                                                                       GeneratePowerExpression,
                                                                       GenerateLogExpression,
                                                                       GenerateTrigonometricExpression,
                                                                       GenerateExpressionNotRequiringDerivative };
+
         // Возможные задачи.
-        static string[] possibleTasks = { "Найти точку <b><u>минимума</u></b> функции", "Найти точку <b><u>максимума</u></b> функции" };
+        private static string[] possibleTasks = { "Найти точку <b><u>минимума</u></b> функции", "Найти точку <b><u>максимума</u></b> функции" };
 
         // Делегат генератора функции.
         public delegate string[] GeneratorDelegate();
@@ -40,7 +41,7 @@ namespace Utils
         delegate double Expression<T>(T x);
 
         /// <summary>
-        /// Генерация выражения вида a * x^3 + b * x^2 + c * x + d.
+        /// Генерирует выражение вида a * x^3 + b * x^2 + c * x + d.
         /// </summary>
         /// <returns></returns>
         public static string[] GeneratePowerExpression()
@@ -55,7 +56,7 @@ namespace Utils
 
             if (chance == 0)
             {
-                // Раверство: x = 0 ИЛИ x = (-2 * b) / (3 * a) (случай, если c = 0).
+                // Равенство: extr1 = 0 И extr2 = (-2 * b) / (3 * a) (случай, если c = 0).
 
                 // Инициализация переменных, в которых будут храниться точки экстремум.
                 // В данном случае одна из точек всегда равна нулю.
@@ -64,14 +65,14 @@ namespace Utils
 
                 // Генерация коэффициента a, не равного нулю.
                 int a;
-                int[] possibleA = { Utils.random.Next(-10, 0), Utils.random.Next(1, 11) };
-                a = possibleA[Utils.random.Next(possibleA.Length)];
+                int[] possibleA = { Generators.random.Next(-10, 0), Generators.random.Next(1, 11) };
+                a = possibleA[Generators.random.Next(possibleA.Length)];
 
                 // b = k * 3 * a (чтобы экстремума была красивым числом, а не дробью).
                 // Генерация коэффициента k, не равного нулю.
                 int k;
-                int[] possibleK = { Utils.random.Next(-10, 0), Utils.random.Next(1, 11) };
-                k = possibleK[Utils.random.Next(possibleK.Length)];
+                int[] possibleK = { Generators.random.Next(-10, 0), Generators.random.Next(1, 11) };
+                k = possibleK[Generators.random.Next(possibleK.Length)];
 
                 int b = k * 3 * a;
 
@@ -83,14 +84,14 @@ namespace Utils
                 Array.Sort(extrs);
 
                 // Коэффициент d может быть любым, он не влияет на решение задачи.
-                int d = Utils.random.Next(-100, 101);
+                int d = Generators.random.Next(-100, 101);
 
                 // Отрезок, на котором надо найти точку минимума или максимума.
-                segment = new int[] { extrs[0] - Utils.random.Next(1, 6), extrs[1] + Utils.random.Next(1, 6) };
+                segment = new int[] { extrs[0] - Generators.random.Next(1, 6), extrs[1] + Generators.random.Next(1, 6) };
 
                 // Что надо найти: точку минимума или максимума?
                 // 0 - минимума, 1 - максимума.
-                int taskID = Utils.random.Next(possibleTasks.Length);
+                int taskID = Generators.random.Next(possibleTasks.Length);
 
                 // Функция.
                 Expression<int> expr = (x) => { return a * Math.Pow(x, 3) + b * Math.Pow(x, 2) + d; };
@@ -107,15 +108,15 @@ namespace Utils
             }
             else if (chance == 1)
             {
-                // Раверство: x = ±\sqrt{-c / (3 * a)} (случай, если b = 0).
+                // Равенство: extr = ±\sqrt{-c / (3 * a)} (случай, если b = 0).
 
                 // Инициализация переменных, в которых будут храниться точки экстремум.
                 int extr1, extr2;
 
                 // Генерация коэффициента a, не равного нулю.
                 int a;
-                int[] possibleA = { Utils.random.Next(-10, 0), Utils.random.Next(1, 11) };
-                a = possibleA[Utils.random.Next(possibleA.Length)];
+                int[] possibleA = { Generators.random.Next(-10, 0), Generators.random.Next(1, 11) };
+                a = possibleA[Generators.random.Next(possibleA.Length)];
 
                 // c = k * 3 * a, где k - квадрат числа.
                 // Генерация коэффициента c, не равного нулю.
@@ -132,14 +133,14 @@ namespace Utils
                 Array.Sort(extrs);
 
                 // Коэффициент d может быть любым, он не влияет на решение задачи.
-                int d = Utils.random.Next(-100, 101);
+                int d = Generators.random.Next(-100, 101);
 
                 // Отрезок, на котором надо найти точку минимума или максимума.
-                segment = new int[] { extrs[0] - Utils.random.Next(1, 6), extrs[1] + Utils.random.Next(1, 6) };
+                segment = new int[] { extrs[0] - Generators.random.Next(1, 6), extrs[1] + Generators.random.Next(1, 6) };
 
                 // Что надо найти: точку минимума или максимума?
                 // 0 - минимума, 1 - максимума.
-                int taskID = Utils.random.Next(possibleTasks.Length);
+                int taskID = Generators.random.Next(possibleTasks.Length);
 
                 // Функция.
                 Expression<int> expr = (x) => { return a * Math.Pow(x, 3) + c * x + d; };
@@ -156,32 +157,33 @@ namespace Utils
             }
             else
             {
-                // Равенство: x = -c / (2 * b) (случай, если a = 0).
+                // Равенство: extr = -c / (2 * b) (случай, если a = 0).
 
                 // Инициализация переменной, в которой будет храниться точка экстремума.
                 int extr;
 
                 // Генерация коэффициента b, не равного нулю.
                 int b;
-                int[] possibleB = { Utils.random.Next(-10, 0), Utils.random.Next(1, 11) };
-                b = possibleB[Utils.random.Next(possibleB.Length)];
+                int[] possibleB = { Generators.random.Next(-10, 0), Generators.random.Next(1, 11) };
+                b = possibleB[Generators.random.Next(possibleB.Length)];
 
                 // c = k * 2 * b.
                 // Генерация коэффициента c.
-                int c = random.Next(0, 11) * 2 * b;
+                int c = random.Next(1, 11) * 2 * b;
+                c = random.Next(2) == 0 ? c : -c;
 
                 // Нахождение точки экстремума.
                 extr = -c / (2 * b);
 
                 // Коэффициент d может быть любым, он не влияет на решение задачи.
-                int d = Utils.random.Next(-100, 101);
+                int d = Generators.random.Next(-100, 101);
 
                 // Отрезок, на котором надо найти точку минимума или максимума.
-                segment = new int[] { extr - Utils.random.Next(1, 6), extr + Utils.random.Next(1, 6) };
+                segment = new int[] { extr - Generators.random.Next(1, 6), extr + Generators.random.Next(1, 6) };
 
                 // Что надо найти: точку минимума или максимума?
                 // 0 - минимума, 1 - максимума.
-                int taskID = Utils.random.Next(possibleTasks.Length);
+                int taskID = Generators.random.Next(possibleTasks.Length);
 
                 // Функция.
                 Expression<int> expr = (x) => { return b * Math.Pow(x, 2) + c * x + d; };
@@ -206,12 +208,12 @@ namespace Utils
         }
 
         /// <summary>
-        /// Генерация выражения вида (a + b * x^2) / (x) + c (= a / x + b * x + c)
+        /// Генерирует выражение вида (a + b * x^2) / (x) + c (= a / x + b * x + c)
         /// </summary>
         /// <returns></returns>
         public static string[] GenerateQuotientExpression()
         {
-            // Равенство: x = ±\sqrt{a / b}.
+            // Равенство: extr = ±\sqrt{a / b}.
             // a и b имеют одинаковый знак.
 
             // Инициализация переменных, в которых будут храниться точки экстремум.
@@ -219,14 +221,14 @@ namespace Utils
 
             // Генерация коэффициента b, не равного нулю.
             int b;
-            int[] possibleB = { Utils.random.Next(-10, 0), Utils.random.Next(1, 11) };
+            int[] possibleB = { Generators.random.Next(-10, 0), Generators.random.Next(1, 11) };
             b = possibleB[random.Next(possibleB.Length)];
 
             // a = k * b, не равного нулю, где k - квадрат числа.
             int a = (int)Math.Pow(random.Next(1, 6), 2) * b;
 
             // Коэффициент c может быть любым, он не влияет на решение задачи.
-            int c = Utils.random.Next(-100, 101);
+            int c = Generators.random.Next(-100, 101);
 
             // Экстремума - целое число, так как a / b - гарантированно полный квадрат.
             extr1 = (int)Math.Sqrt(a / b);
@@ -244,7 +246,7 @@ namespace Utils
 
             // Что надо найти: точку минимума или максимума?
             // 0 - минимума, 1 - максимума.
-            int taskID = Utils.random.Next(possibleTasks.Length);
+            int taskID = Generators.random.Next(possibleTasks.Length);
 
             // Функция.
             Expression<int> expr = (x) => { return a / x + b * x + c; };
@@ -270,48 +272,46 @@ namespace Utils
         }
 
         /// <summary>
-        /// Генерация выражения вида (a * x + b) * exp^(c * x + d).
+        /// Генерирует выражение вида (a * x + b) * e^(c * x + d).
         /// </summary>
         /// <returns></returns>
         public static string[] GenerateExpExpression()
         {
             // Генерация происходит при помощи равенства ans = -b / a - 1 / c.
-            // Возможные задачи.
-            string[] possibleTasks = { "Найти точку <b><u>минимума</u></b> функции", "Найти точку <b><u>максимума</u></b> функции" };
 
-            // Генерация нуля производной.
-            int funcZero = Utils.random.Next(-10, 11);
+            // Генерация точки экстремумы.
+            int extr = Generators.random.Next(-10, 11);
 
             // Генерация коэффициента c, не равного нулю.
             int c;
-            int[] possibleC = { Utils.random.Next(-10, 0), Utils.random.Next(1, 11) };
-            c = possibleC[Utils.random.Next(possibleC.Length)];
+            int[] possibleC = { Generators.random.Next(-10, 0), Generators.random.Next(1, 11) };
+            c = possibleC[Generators.random.Next(possibleC.Length)];
 
             // Создание дроби 1 / c.
             Fraction divideC = new Fraction(1, c);
 
             // Создание дроби -b / a. Числитель и знаменатель умножается на число [1, 3], чтобы не всегда c = a.
-            Fraction minusBDivideA = (funcZero + divideC).IncreaseNumAndDenumBy(random.Next(1, 4));
+            Fraction minusBDivideA = (extr + divideC).IncreaseNumAndDenumBy(random.Next(1, 4));
 
             // Коэффициенты b и a.
             int b = -(int)minusBDivideA.Numerator;
             int a = (int)minusBDivideA.Denominator;
 
             // Коэффициент d может быть любым, он не влияет на решение задачи.
-            int d = Utils.random.Next(-100, 101);
+            int d = Generators.random.Next(-100, 101);
 
             // Отрезок, на котором надо найти точку минимума или максимума.
-            int[] segment = { funcZero - Utils.random.Next(1, 6), funcZero + Utils.random.Next(1, 6) };
+            int[] segment = { extr - Generators.random.Next(1, 6), extr + Generators.random.Next(1, 6) };
 
             // Что надо найти: точку минимума или максимума?
             // 0 - минимума, 1 - максимума.
-            int taskID = Utils.random.Next(possibleTasks.Length);
+            int taskID = Generators.random.Next(possibleTasks.Length);
 
             // Функция.
             Expression<int> expr = (x) => { return (a * x + b) * Math.Exp(c * x + d); };
 
             // Нахождение ответа и определение условия задачи.
-            int ans = GetTaskAnswer(expr, new List<int> { segment[0], segment[1], funcZero }, taskID);
+            int ans = GetTaskAnswer(expr, new List<int> { segment[0], segment[1], extr }, taskID);
             string task = possibleTasks[taskID];
 
             // Формирование коэфициентов в виде строк.
@@ -329,12 +329,12 @@ namespace Utils
         }
 
         /// <summary>
-        /// Генерация выражения вида n * ln(a * x + b) + c * x + в.
+        /// Генерирует выражение вида n * ln(a * x + b) + c * x + d.
         /// </summary>
         /// <returns></returns>
         public static string[] GenerateLogExpression()
         {
-            // Равенство: x = -(n / (a * c) + b / a) (случай, если c = 0).
+            // Равенство: extr = -(n / c) + b / a).
             // Условие, чтобы подлогарифмическое выражение было больше нуля: ((-n * a) / с) > 0.
 
             // Инициализация переменной, в которой будет храниться точка экстремума.
@@ -357,13 +357,13 @@ namespace Utils
             int b = -random.Next(-10, 11) * a;
 
             // Коэффициент d может быть любым, он не влияет на решение задачи.
-            int d = Utils.random.Next(-100, 101);
+            int d = Generators.random.Next(-100, 101);
 
             // Нахождение точки экстремума.
             extr = -(n / c + b / a);
 
             // Отрезок, на котором надо найти точку минимума или максимума.
-            // Во всех найденных мной задачах избегают случая, где a * x + b = 0 (не включают такой x в отрезок).
+            // Во всех найденных мной задачах избегают случая, где a * x + b <= 0 (не включают такую точку в отрезок).
 
             // Нахождение a * x + b = 0. Причем a * x + b > 0.
             Fraction frac = (new Fraction(-b, a)).IncreaseNumAndDenumBy(2);
@@ -372,24 +372,24 @@ namespace Utils
 
             if (extr > frac.ToDouble())
             {
-                segment = new Fraction[] { extr - new Fraction(Math.Abs(random.Next(1, (int)(extr * frac.Denominator - frac.Numerator + 1))), frac.Denominator), 
-                    new Fraction(extr) + Utils.random.Next(1, 6) };
+                segment = new Fraction[] { extr - new Fraction(Math.Abs(random.Next(1, (int)(extr * frac.Denominator - frac.Numerator + 1))), frac.Denominator),
+                    new Fraction(extr) + Generators.random.Next(1, 6) };
             }
             else
             {
-                segment = new Fraction[] { new Fraction(extr) - Utils.random.Next(1, 6), 
+                segment = new Fraction[] { new Fraction(extr) - Generators.random.Next(1, 6),
                     extr + new Fraction(Math.Abs(random.Next(1, (int)(frac.Numerator - extr * frac.Denominator))), frac.Denominator) };
             }
 
             // Что надо найти: точку минимума или максимума?
             // 0 - минимума, 1 - максимума.
-            int taskID = Utils.random.Next(possibleTasks.Length);
+            int taskID = Generators.random.Next(possibleTasks.Length);
 
             // Функция.
             Expression<Fraction> expr = (x) => { return n * Math.Log((a * x + b).ToDouble()) + (c * x).ToDouble() + d; };
 
             // Нахождение ответа и определение условия задачи.
-            var ans = GetTaskAnswer(expr, new List<Fraction> { segment[0], segment[1], new Fraction(extr)}, taskID); 
+            var ans = GetTaskAnswer(expr, new List<Fraction> { segment[0], segment[1], new Fraction(extr) }, taskID);
             string task = possibleTasks[taskID];
 
             // Формирование коэфициентов в виде строк.
@@ -408,7 +408,7 @@ namespace Utils
         }
 
         /// <summary>
-        /// Генерация выражения вида a * \sin{x} (или \cos{x}) + b * x + c.
+        /// Генерирует выражение вида a * \sin{x} (или \cos{x}) + b * x + c.
         /// </summary>
         /// <returns></returns>
         public static string[] GenerateTrigonometricExpression()
@@ -421,25 +421,29 @@ namespace Utils
             int trigFuncID = random.Next(trigFuncs.Length);
 
             // Существует два типа задач с тригонометрическими функциями. Выбор этого типа:
-            int chance = 0; // random.Next(0, 2);
+            int chance = random.Next(0, 2);
 
             if (chance == 0)
             {
                 // У функции нет экстремумы.
                 // Условие: |a| < |b|.
 
-                // Генерация коэффициента a.
+                // Генерация коэффициента a, не равного нулю.
                 int a;
                 int[] possibleA = { random.Next(-10, 0), random.Next(1, 11) };
                 a = possibleA[random.Next(possibleA.Length)];
 
-                // Генерация коэффициента a.
+                // Так как производная (cos)' = -sin, то если выбрана функция cos, необходимо поменять
+                // знак коэффициента a для правильного вычисления ответа на задачу.
+                int tempA = trigFuncID == 1 ? -a : a;
+
+                // Генерация коэффициента b.
                 int b;
                 b = (random.Next(2) == 0 ? -1 : 1) *
                     random.Next(Math.Abs(a) + 1, Math.Abs(a) + 12);
 
                 // Коэффициент c может быть любым, он не влияет на решение задачи.
-                int c = Utils.random.Next(-100, 101);
+                int c = Generators.random.Next(-100, 101);
 
                 // Генерируется случайный отрезок.
                 int randomPoint = random.Next(-10, 11);
@@ -448,10 +452,6 @@ namespace Utils
                 // Что надо найти: точку минимума или максимума?
                 // 0 - минимума, 1 - максимума.
                 int taskID = random.Next(possibleTasks.Length);
-
-                // Так как производная (cos)' = -sin, то если выбрана функция cos, необходимо поменять
-                // знак коэффициента a для правильного вычисления ответа на задачу.
-                int tempA = trigFuncID == 1 ? -a : a;
 
                 // Нахождение ответа и определение условия задачи.
                 int ans;
@@ -521,7 +521,7 @@ namespace Utils
                 int b;
                 int[] possibleB = { random.Next(-10, 0), random.Next(1, 11) };
                 b = possibleB[random.Next(possibleB.Length)];
-                string bStringFraction = aOrB == 1 ? MergeCoefWithStringCoef(b, coefsString[coefID].Numerator, coefsString[coefID].Denominator)
+                string bStringFraction = aOrB == 1 ? Utils.MergeCoefWithStringCoef(b, coefsString[coefID].Numerator, coefsString[coefID].Denominator)
                                                    : b.ToString();
 
                 Fraction bToCalculate = aOrB == 1 ? b * kToCalculate : b;
@@ -530,12 +530,12 @@ namespace Utils
                 int a = b;
                 a = random.Next(2) == 0 ? -a : a;
 
-                string aStringFraction = aOrB == 0 ? MergeCoefWithStringCoef(a, coefsString[coefID].Denominator, coefsString[coefID].Numerator)
+                string aStringFraction = aOrB == 0 ? Utils.MergeCoefWithStringCoef(a, coefsString[coefID].Denominator, coefsString[coefID].Numerator)
                                                    : a.ToString();
                 Fraction aToCalculate = aOrB == 0 ? a / kToCalculate : a;
 
                 // Коэффициент c может быть любым, он не влияет на решение задачи.
-                int c = Utils.random.Next(-100, 101);
+                int c = Generators.random.Next(-100, 101);
 
                 // Нахождение точки экстремума.
                 // Так как производная (cos)' = -sin, то если в задаче используется cos, необходимо домножить точку экстремума на -1.
@@ -551,22 +551,20 @@ namespace Utils
 
                 // Отрезок, на котором надо найти точку минимума или максимума.
                 // Так как sinx и cosx - периодические функции, то берется отрезок длиной pi, причем ни одна
-                // из границ отрезка не совпадает с точкой экстремума (иначе на отрезке будет две экстремумы).
+                // из границ отрезка не совпадает с точкой экстремума (иначе на отрезке будет две точки экстремумы).
                 int translation = random.Next(1, (int)extrAuxiliaryFraction.Denominator);
-                Fraction[] segment = { (extrAuxiliaryFraction - new Fraction(translation, extrAuxiliaryFraction.Denominator)).Reduce(), 
+                Fraction[] segment = { (extrAuxiliaryFraction - new Fraction(translation, extrAuxiliaryFraction.Denominator)).Reduce(),
                     (extrAuxiliaryFraction + new Fraction(extrAuxiliaryFraction.Denominator - translation, extrAuxiliaryFraction.Denominator)).Reduce() };
+
                 // Отрезок-строка, в котором в числителе добавляется pi.  
                 string[] segmentString = { segment[0].Reduce().AddPiToNumeratorLaTeX(), segment[1].Reduce().AddPiToNumeratorLaTeX() };
-
-                segment[0] = segment[0] * Math.PI;
-                segment[1] = segment[1] * Math.PI;
 
                 // Функция.
                 Expression<double> expr = (x) => { return aToCalculate.ToDouble() * (trigFuncID == 0 ? Math.Sin(x) : Math.Cos(x)) + bToCalculate.ToDouble() * x + c; };
 
                 // Что надо найти: точку минимума или максимума?
                 // 0 - минимума, 1 - максимума.
-                int taskID = expr(extr.ToDouble()) > expr(segment[0].ToDouble()) &&  expr(extr.ToDouble()) > expr(segment[1].ToDouble()) ? 1 : 0;
+                int taskID = expr(extr.ToDouble()) > expr(segment[0].ToDouble()) && expr(extr.ToDouble()) > expr(segment[1].ToDouble()) ? 1 : 0;
                 string task = possibleTasks[taskID];
 
                 // Формирование коэфициентов в виде строк.
@@ -586,7 +584,7 @@ namespace Utils
         }
 
         /// <summary>
-        /// Генерация выражения, не исследование которой не требует использования производной, вида
+        /// Генерирует выражение, исследование которой не требует использования производной, вида
         /// \\sqrt{a * x^2 + b * x + c}, \\log_{n}{a * x^2 + b * x + c} или n^{a * x^2 + b * x + c}.
         /// </summary>
         /// <returns></returns>
@@ -606,19 +604,19 @@ namespace Utils
 
             // Генерация коэффициента a, не равного нулю.
             int a;
-            int[] possibleA = { Utils.random.Next(-10, 0), Utils.random.Next(1, 11) };
-            a = possibleA[Utils.random.Next(possibleA.Length)];
+            int[] possibleA = { Generators.random.Next(-10, 0), Generators.random.Next(1, 11) };
+            a = possibleA[Generators.random.Next(possibleA.Length)];
 
             // Генерация коэффициента b, не равного нулю.
             int b;
-            int[] possibleB = { Utils.random.Next(-10, 0), Utils.random.Next(1, 11) };
-            b = 2 * possibleB[Utils.random.Next(possibleB.Length)] * a;
+            int[] possibleB = { Generators.random.Next(-10, 0), Generators.random.Next(1, 11) };
+            b = 2 * possibleB[Generators.random.Next(possibleB.Length)] * a;
 
             // Нахождение точки экстремума.
             extr = -b / (2 * a);
 
             // Коэффициент c может быть любым, он не влияет на решение задачи.
-            int c = Utils.random.Next(-100, 101);
+            int c = Generators.random.Next(-100, 101);
 
             // Генерация отрезка в этой задаче не требуется.
 
@@ -646,12 +644,12 @@ namespace Utils
         /// <summary>
         /// Возвращает ответ на задачу.
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T"></typeparam>
         /// <param name="expr">Выражение задачи</param>
         /// <param name="possibleAnswers">Возможные ответы на задачу</param>
         /// <param name="taskID">Идентификатор задания</param>
         /// <returns></returns>
-        private static T1 GetTaskAnswer<T1>(Expression<T1> expr, List<T1> possibleAnswers, int taskID)
+        private static T GetTaskAnswer<T>(Expression<T> expr, List<T> possibleAnswers, int taskID)
         {
             // Инициализация списка со всеми возможными значениями функции expr.
             List<double> values = new List<double>();
@@ -661,9 +659,6 @@ namespace Utils
             {
                 values.Add(expr(possibleAnswers[i]));
             }
-
-            // Нахождение ответа задачи.
-            int ans;
 
             if (taskID == 0)
             {
@@ -702,12 +697,15 @@ namespace Utils
         /// <param name="numOfTasks">Количество вариантов</param>
         /// <param name="numOfExpressions">Количество задач</param>
         /// <param name="typeOfExpression">Тип запрашиваемых выражений</param>
-        public static void generateHTMLDoc(DummyHTML HtmlDoc, int numOfTasks, int numOfExpressions, string typeOfExpression = null)
+        public static void GenerateHTMLDoc(DummyHTML HtmlDoc, int numOfTasks, int numOfExpressions, int seed, string stringSeed, string typeOfExpression = null)
         {
+            // Создание нового random по ключу генерации seed.
+            random = new Random(seed);
+
             // Обнуление делегата.
             GeneratorDelegate generatorFunc = null;
 
-            // Если тип выражений - не null, то выбирается определяется выражение.
+            // Если тип выражений указан явно, то определяется тип выражения.
             if (typeOfExpression != null)
             {
                 // Выбор задачи.
@@ -737,7 +735,8 @@ namespace Utils
                 }
             }
 
-            AddTasksToHtml(generatorFunc, HtmlDoc, numOfTasks, numOfExpressions, typeOfExpression == null);
+            // Добавление в документ numOfTasks вариантов по numOfExpressions задач в каждом.
+            AddTasksToHtml(generatorFunc, HtmlDoc, numOfTasks, numOfExpressions, typeOfExpression == null, stringSeed);
         }
 
         /// <summary>
@@ -746,9 +745,12 @@ namespace Utils
         /// <param name="HtmlDoc">Документ, куда добавляются новые задания</param>
         /// <param name="numOfTasks">Количество вариантов</param>
         /// <param name="generatorsList">Список генераторов</param>
-        public static void generateHTMLDoc(DummyHTML HtmlDoc, int numOfTasks, List<GeneratorDelegate> generatorsList)
+        public static void GenerateHTMLDoc(DummyHTML HtmlDoc, int numOfTasks, List<GeneratorDelegate> generatorsList, int seed, string stringSeed)
         {
-            AddTasksToHtml(HtmlDoc, numOfTasks, generatorsList);
+            // Создание нового random по ключу генерации seed.
+            random = new Random(seed);
+
+            AddTasksToHtml(HtmlDoc, numOfTasks, generatorsList, stringSeed);
         }
 
         /// <summary>
@@ -759,14 +761,17 @@ namespace Utils
         /// <param name="numOfTasks">Количество вариантов</param>
         /// <param name="numOfExpressions">Количество задач</param>
         /// <param name="randomFlag">Флаг, отвечающий за то, использовать ли случайные генераторы</param>
-        private static void AddTasksToHtml(GeneratorDelegate generatorFunc, DummyHTML HtmlDoc, int numOfTasks, int numOfExpressions, bool randomFlag)
+        private static void AddTasksToHtml(GeneratorDelegate generatorFunc, DummyHTML HtmlDoc, int numOfTasks, int numOfExpressions, bool randomFlag, string stringSeed)
         {
+            // Добавление ключа генерации.
+            HtmlDoc.ChangeSeed(stringSeed);
+
             if (numOfExpressions == 1)
             {
                 for (int i = 0; i < numOfTasks; i++)
                 {
                     // Если генератор не указан (randomFlag == true), то он выбирается случайным образом. 
-                    if (randomFlag) generatorFunc = possibleGeneratorsOfExpression[random.Next(possibleGeneratorsOfExpression.Length)];
+                    if (randomFlag) generatorFunc = possibleGeneratorsOfExpression[Generators.random.Next(possibleGeneratorsOfExpression.Length)];
 
                     string[] task = generatorFunc();
 
@@ -787,7 +792,7 @@ namespace Utils
                     for (int j = 0; j < numOfExpressions; j++)
                     {
                         // Если генератор не указан (randomFlag == true), то он выбирается случайным образом. 
-                        if (randomFlag) generatorFunc = possibleGeneratorsOfExpression[random.Next(possibleGeneratorsOfExpression.Length)];
+                        if (randomFlag) generatorFunc = possibleGeneratorsOfExpression[Generators.random.Next(possibleGeneratorsOfExpression.Length)];
 
                         string[] task = generatorFunc();
 
@@ -810,8 +815,11 @@ namespace Utils
         /// <param name="HtmlDoc">Документ, куда добавляются новые задания</param>
         /// <param name="numOfTasks">Количество вариантов</param>
         /// <param name="generatorsList">Список генераторов</param>
-        private static void AddTasksToHtml(DummyHTML HtmlDoc, int numOfTasks, List<GeneratorDelegate> generatorsList)
+        private static void AddTasksToHtml(DummyHTML HtmlDoc, int numOfTasks, List<GeneratorDelegate> generatorsList, string stringSeed)
         {
+            // Добавление ключа генерации.
+            HtmlDoc.ChangeSeed(stringSeed);
+
             GeneratorDelegate generatorFunc;
 
             if (generatorsList.Count == 1)
@@ -837,12 +845,7 @@ namespace Utils
                     tasks = new StringBuilder();
 
                     // Изменяется порядок элементов в списке генераторов.
-                    for (int k = 0; k < generatorsList.Count; k++)
-                    {
-                        GeneratorDelegate temp = generatorsList[k];
-                        generatorsList.RemoveAt(k);
-                        generatorsList.Insert(random.Next(generatorsList.Count), temp);
-                    }
+                    Utils.ChangeListOrder(generatorsList);
 
                     for (int j = 0; j < generatorsList.Count; j++)
                     {
@@ -860,76 +863,6 @@ namespace Utils
                         Environment.NewLine + tasks.ToString());
                 }
             }
-        }
-
-        /// <summary>
-        /// Находит НОД двух чисел.
-        /// </summary>
-        /// <returns></returns>
-        private static double FindGCD(double firstValue, double secondValue)
-        {
-            // Нахождение НОД по алгоритму Евклида. НОД запишется в переменную gcd.
-            double gcd = 1;
-            while (secondValue != 0)
-            {
-                gcd = secondValue;
-                secondValue = firstValue % secondValue;
-                firstValue = gcd;
-            }
-
-            return gcd;
-        }
-
-        /// <summary>
-        /// Склеивает вещественный коэфициент и дробь в виде строки.
-        /// </summary>
-        /// <param name="coef">Коэфициент</param>
-        /// <param name="numerator">Числитель дроби</param>
-        /// <param name="denominator">Знаменатель дроби</param>
-        /// <returns></returns>
-        private static string MergeCoefWithStringCoef(double coef, string numerator, string denominator)
-        {
-            string tempNumerator;
-            string tempDenominator;
-
-            double tryParseIndicator;
-
-            if (Math.Abs(coef) == 1) return denominator != "1" ? $"\\frac{{{(Math.Sign(coef) == -1 ? "-" + numerator : numerator)}}}{{{denominator}}}"
-                                                               : numerator == "-1" ? "-" : (numerator == "1" ? "" : numerator);
-
-            if (double.TryParse(numerator, out tryParseIndicator) == true)
-            {
-                if (double.TryParse(denominator, out tryParseIndicator) == true)
-                {
-                    double gcd = FindGCD(coef, int.Parse(denominator));
-
-                    tempNumerator = (coef * int.Parse(numerator) / gcd).ToString();
-                    tempDenominator = (int.Parse(denominator) / gcd).ToString();
-                }
-                else
-                {
-                    tempNumerator = (coef * int.Parse(numerator)).ToString();
-                    tempDenominator = denominator;
-                }
-            }
-            else
-            {
-                if (double.TryParse(denominator, out tryParseIndicator) == true)
-                {
-                    double gcd = FindGCD(coef, int.Parse(denominator));
-
-                    tempNumerator = ((coef / gcd == 1 ? "" : (coef / gcd).ToString()) + numerator).ToString();
-                    tempDenominator = (int.Parse(denominator) / gcd).ToString();
-                }
-                else
-                {
-                    tempNumerator = coef + numerator;
-                    tempDenominator = denominator;
-                }
-            }
-
-            return tempDenominator != "1" ? $"\\frac{{{tempNumerator}}}{{{tempDenominator}}}"
-                                            : tempNumerator;
         }
     }
 }
