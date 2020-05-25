@@ -3,9 +3,7 @@ C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGenerator\bin\Debu
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGenerator\bin\Debug\ProblemsGenerator.exe
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGenerator\bin\Debug\ProblemsGenerator.pdb
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGenerator\bin\Debug\ClassLib.dll
-C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGenerator\bin\Debug\Utils.dll
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGenerator\bin\Debug\ClassLib.pdb
-C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGenerator\bin\Debug\Utils.pdb
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGenerator\obj\Debug\ProblemsGenerator.csproj.CopyComplete
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGenerator\obj\Debug\ProblemsGenerator.exe
 C:\Users\nikitavolohov\source\repos\ProblemsGenerator\ProblemsGenerator\obj\Debug\ProblemsGenerator.pdb
